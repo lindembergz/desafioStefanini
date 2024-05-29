@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.19" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.19">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.Data.SQLite" Version="1.0.118" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Stefanini.Estoque.App\Stefanini.Estoque.App.csproj" />
+    <ProjectReference Include="..\Stefanini.Estoque.Data\Stefanini.Estoque.Data.csproj" />
+    <ProjectReference Include="..\Stefanini.Estoque.Domain\Stefanini.Estoque.Domain.csproj" />
+    <ProjectReference Include="..\Stefanini.Venda.App\Stefanini.Venda.App.csproj" />
+    <ProjectReference Include="..\Stefanini.Venda.Data\Stefanini.Venda.Data.csproj" />
+    <ProjectReference Include="..\Stefanini.Venda.Domain\Stefanini.Venda.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

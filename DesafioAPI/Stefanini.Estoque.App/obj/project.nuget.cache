@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "+lhQYNoDImVMSjTrBgIrpP7mGp4XvkCJkLUfkzaQj0ZnWSdMzjwmiCf4f1u5MmAlhkaJP2YgrvXxBQz9peYUsQ==",
+  "success": true,
+  "projectFilePath": "C:\\Lindemberg\\desafioStefanini\\DesafioAPI\\Stefanini.Estoque.App\\Stefanini.Estoque.App.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\lcaraujo1\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
+    "C:\\Users\\lcaraujo1\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\lcaraujo1\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "C:\\Users\\lcaraujo1\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\lcaraujo1\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

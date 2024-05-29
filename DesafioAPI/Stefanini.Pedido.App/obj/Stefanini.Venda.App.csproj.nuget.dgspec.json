@@ -1,0 +1,417 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Pedido.App\\Stefanini.Venda.App.csproj": {}
+  },
+  "projects": {
+    "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Core\\Stefanini.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Core\\Stefanini.Core.csproj",
+        "projectName": "Stefanini.Core",
+        "projectPath": "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Core\\Stefanini.Core.csproj",
+        "packagesPath": "C:\\Users\\lcaraujo1\\.nuget\\packages\\",
+        "outputPath": "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\lcaraujo1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Estoque.App\\Stefanini.Estoque.App.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Estoque.App\\Stefanini.Estoque.App.csproj",
+        "projectName": "Stefanini.Estoque.App",
+        "projectPath": "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Estoque.App\\Stefanini.Estoque.App.csproj",
+        "packagesPath": "C:\\Users\\lcaraujo1\\.nuget\\packages\\",
+        "outputPath": "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Estoque.App\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\lcaraujo1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Estoque.Domain\\Stefanini.Estoque.Domain.csproj": {
+                "projectPath": "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Estoque.Domain\\Stefanini.Estoque.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "MediatR": {
+              "target": "Package",
+              "version": "[12.2.0, )"
+            },
+            "automapper": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Estoque.Data\\Stefanini.Estoque.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Estoque.Data\\Stefanini.Estoque.Data.csproj",
+        "projectName": "Stefanini.Estoque.Data",
+        "projectPath": "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Estoque.Data\\Stefanini.Estoque.Data.csproj",
+        "packagesPath": "C:\\Users\\lcaraujo1\\.nuget\\packages\\",
+        "outputPath": "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Estoque.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\lcaraujo1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Core\\Stefanini.Core.csproj": {
+                "projectPath": "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Core\\Stefanini.Core.csproj"
+              },
+              "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Estoque.Domain\\Stefanini.Estoque.Domain.csproj": {
+                "projectPath": "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Estoque.Domain\\Stefanini.Estoque.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.30, )"
+            },
+            "Microsoft.EntityFrameworkCore.Abstractions": {
+              "target": "Package",
+              "version": "[6.0.30, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.30, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[6.0.30, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.30, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.30, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Estoque.Domain\\Stefanini.Estoque.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Estoque.Domain\\Stefanini.Estoque.Domain.csproj",
+        "projectName": "Stefanini.Estoque.Domain",
+        "projectPath": "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Estoque.Domain\\Stefanini.Estoque.Domain.csproj",
+        "packagesPath": "C:\\Users\\lcaraujo1\\.nuget\\packages\\",
+        "outputPath": "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Estoque.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\lcaraujo1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Core\\Stefanini.Core.csproj": {
+                "projectPath": "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Core\\Stefanini.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Pedido.App\\Stefanini.Venda.App.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Pedido.App\\Stefanini.Venda.App.csproj",
+        "projectName": "Stefanini.Venda.App",
+        "projectPath": "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Pedido.App\\Stefanini.Venda.App.csproj",
+        "packagesPath": "C:\\Users\\lcaraujo1\\.nuget\\packages\\",
+        "outputPath": "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Pedido.App\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\lcaraujo1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Estoque.App\\Stefanini.Estoque.App.csproj": {
+                "projectPath": "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Estoque.App\\Stefanini.Estoque.App.csproj"
+              },
+              "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Venda.Domain\\Stefanini.Venda.Domain.csproj": {
+                "projectPath": "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Venda.Domain\\Stefanini.Venda.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "MediatR": {
+              "target": "Package",
+              "version": "[12.2.0, )"
+            },
+            "automapper": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Venda.Domain\\Stefanini.Venda.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Venda.Domain\\Stefanini.Venda.Domain.csproj",
+        "projectName": "Stefanini.Venda.Domain",
+        "projectPath": "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Venda.Domain\\Stefanini.Venda.Domain.csproj",
+        "packagesPath": "C:\\Users\\lcaraujo1\\.nuget\\packages\\",
+        "outputPath": "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Venda.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\lcaraujo1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Core\\Stefanini.Core.csproj": {
+                "projectPath": "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Core\\Stefanini.Core.csproj"
+              },
+              "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Estoque.Data\\Stefanini.Estoque.Data.csproj": {
+                "projectPath": "C:\\Lindemberg\\Desafio\\API\\DesafioAPI\\Stefanini.Estoque.Data\\Stefanini.Estoque.Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+C:\Lindemberg\Desafio\API\DesafioAPI\Stefanini.Produto.Domain\bin\Debug\net6.0\Stefanini.Produto.Domain.deps.json
+C:\Lindemberg\Desafio\API\DesafioAPI\Stefanini.Produto.Domain\bin\Debug\net6.0\Stefanini.Produto.Domain.dll
+C:\Lindemberg\Desafio\API\DesafioAPI\Stefanini.Produto.Domain\bin\Debug\net6.0\Stefanini.Produto.Domain.pdb
+C:\Lindemberg\Desafio\API\DesafioAPI\Stefanini.Produto.Domain\bin\Debug\net6.0\Stefanini.Core.dll
+C:\Lindemberg\Desafio\API\DesafioAPI\Stefanini.Produto.Domain\bin\Debug\net6.0\Stefanini.Core.pdb
+C:\Lindemberg\Desafio\API\DesafioAPI\Stefanini.Produto.Domain\obj\Debug\net6.0\Stefanini.Produto.Domain.csproj.AssemblyReference.cache
+C:\Lindemberg\Desafio\API\DesafioAPI\Stefanini.Produto.Domain\obj\Debug\net6.0\Stefanini.Produto.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Lindemberg\Desafio\API\DesafioAPI\Stefanini.Produto.Domain\obj\Debug\net6.0\Stefanini.Produto.Domain.AssemblyInfoInputs.cache
+C:\Lindemberg\Desafio\API\DesafioAPI\Stefanini.Produto.Domain\obj\Debug\net6.0\Stefanini.Produto.Domain.AssemblyInfo.cs
+C:\Lindemberg\Desafio\API\DesafioAPI\Stefanini.Produto.Domain\obj\Debug\net6.0\Stefanini.Produto.Domain.csproj.CoreCompileInputs.cache
+C:\Lindemberg\Desafio\API\DesafioAPI\Stefanini.Produto.Domain\obj\Debug\net6.0\Stefanini.Produto.Domain.csproj.CopyComplete
+C:\Lindemberg\Desafio\API\DesafioAPI\Stefanini.Produto.Domain\obj\Debug\net6.0\Stefanini.Produto.Domain.dll
+C:\Lindemberg\Desafio\API\DesafioAPI\Stefanini.Produto.Domain\obj\Debug\net6.0\refint\Stefanini.Produto.Domain.dll
+C:\Lindemberg\Desafio\API\DesafioAPI\Stefanini.Produto.Domain\obj\Debug\net6.0\Stefanini.Produto.Domain.pdb
+C:\Lindemberg\Desafio\API\DesafioAPI\Stefanini.Produto.Domain\obj\Debug\net6.0\ref\Stefanini.Produto.Domain.dll
