@@ -13,35 +13,26 @@ namespace Questao5.Application.Services
     public class MovimentoService : IMovimentoService
     {
         private readonly IMovimentoRepository _movimentoRepository;
-        private readonly IContaCorrenteRepository _contaCorrenteRepository;
-        private readonly IIdempotenciaRepository _idempotenciaRepository;
+        private readonly IContaCorrenteRepository _contaCorrenteRepository;       
+
+        private readonly IIdempotenciaService _idempotenciaService;
 
         public MovimentoService(IMovimentoRepository movimentoRepository,
-                        IContaCorrenteRepository contaCorrenteRepository,
-                        IIdempotenciaRepository idempotenciaRepository
- 
-                            )
+                        IContaCorrenteRepository contaCorrenteRepository,                       
+                        IIdempotenciaService IdempotenciaService)
         {
             _movimentoRepository = movimentoRepository;
             _contaCorrenteRepository = contaCorrenteRepository;
-            _idempotenciaRepository = idempotenciaRepository;
+            _idempotenciaService = IdempotenciaService; 
         }
 
-        private string GerarChaveIdempotencia(MovimentarContaRequest request)
-        {
-            string chaveIdempotencia = $"{request.IdRequisicao}|{request.NumeroConta}|{request.Valor}|{request.Tipo}";
-            return GeneraterHash.GenerateSHA256Hash(chaveIdempotencia);
-        }
 
         public async Task<MovimentarContaResponse> Adicionar(MovimentarContaRequest request)
         {
-
-            var chaveIdempotencia = GerarChaveIdempotencia(request);
-
-            var idempontencia = await _idempotenciaRepository.ChaveJaProcessada(chaveIdempotencia);
+            var (chaveIdempotencia, idempontencia) = await _idempotenciaService.ChaveJaProcessada(request);
             if (idempontencia != null)
             {
-                return JsonConvert.DeserializeObject<MovimentarContaResponse>(idempontencia.Resultado);
+                return idempontencia;
             }
 
             var contaCorrente = await _contaCorrenteRepository.ObterPorNumeroConta(request.NumeroConta);
@@ -60,7 +51,7 @@ namespace Questao5.Application.Services
             var resultado = new MovimentarContaResponse { IdMovimento = movimento.IdMovimento };
 
             await _movimentoRepository.Adicionar(movimento);
-            await _idempotenciaRepository.AdicionarIdempotencia(chaveIdempotencia, JsonConvert.SerializeObject(request), JsonConvert.SerializeObject(resultado));
+            await _idempotenciaService.AdicionarIdempotencia(chaveIdempotencia, JsonConvert.SerializeObject(request), JsonConvert.SerializeObject(resultado));
 
 
             if (_movimentoRepository.UnitOfWork != null)

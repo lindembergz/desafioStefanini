@@ -1,7 +1,4 @@
-﻿using FluentValidation;
-using Questao5.Application.Commands.Requests;
-using Questao5.Application.Services;
-using Questao5.Application.Validators;
+﻿using Questao5.Application.Services;
 using Questao5.Core.Data;
 using Questao5.Domain.Interfaces.Repositories;
 using Questao5.Domain.Interfaces.Services;
@@ -22,6 +19,7 @@ namespace Questao5.Setup
 
             services.AddScoped<IContaCorrenteService, ContaCorrenteService>();
             services.AddScoped<IMovimentoService, MovimentoService>();
+            services.AddScoped<IIdempotenciaService, IdempotenciaService>();
 
         }
     }

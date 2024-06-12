@@ -14,15 +14,15 @@ namespace Questao5.Tests.ServiceTests
     {
         private readonly Mock<IMovimentoRepository> _movimentoRepositoryMock;
         private readonly Mock<IContaCorrenteRepository> _contaCorrenteRepositoryMock;
-        private readonly Mock<IIdempotenciaRepository> _idempotenciaRepositoryMock;
+        private readonly Mock<IIdempotenciaService> _idempotenciaServiceMock;
         private readonly MovimentoService _movimentoService;
 
         public MovimentoServiceTests()
         {
             _movimentoRepositoryMock = new Mock<IMovimentoRepository>();
             _contaCorrenteRepositoryMock = new Mock<IContaCorrenteRepository>();
-            _idempotenciaRepositoryMock = new Mock<IIdempotenciaRepository>();
-            _movimentoService = new MovimentoService(_movimentoRepositoryMock.Object, _contaCorrenteRepositoryMock.Object, _idempotenciaRepositoryMock.Object);
+            _idempotenciaServiceMock = new Mock<IIdempotenciaService>();
+            _movimentoService = new MovimentoService(_movimentoRepositoryMock.Object, _contaCorrenteRepositoryMock.Object, _idempotenciaServiceMock.Object);
         }
 
         [Fact]
@@ -32,21 +32,23 @@ namespace Questao5.Tests.ServiceTests
             var request = new MovimentarContaRequest
             {
                 IdRequisicao = "abc123",
-                NumeroConta = "123",
+                NumeroConta = "1234567890",
                 Valor = 100,
                 Tipo = TipoMovimento.Credito
             };
 
             var contaCorrente = new ContaCorrente
             {
-                IdContaCorrente = Guid.Parse("B6BAFC09-6967-ED11-A567-055DFA4A16C9"),
+                IdContaCorrente = Guid.NewGuid(),
                 Numero = int.Parse(request.NumeroConta),
                 Nome = "John Doe",
                 Ativo = true
             };
 
+            var chaveIdempotencia = GeneraterHash.GenerateSHA256Hash($"{request.IdRequisicao}|{request.NumeroConta}|{request.Valor}|{request.Tipo}");
+
             _contaCorrenteRepositoryMock.Setup(r => r.ObterPorNumeroConta(request.NumeroConta)).ReturnsAsync(contaCorrente);
-            _idempotenciaRepositoryMock.Setup(r => r.ChaveJaProcessada(It.IsAny<string>())).ReturnsAsync((Idempotencia)null);
+            _idempotenciaServiceMock.Setup(s => s.ChaveJaProcessada(request)).ReturnsAsync((chaveIdempotencia, null));
 
             // Act
             var result = await _movimentoService.Adicionar(request);
@@ -55,7 +57,7 @@ namespace Questao5.Tests.ServiceTests
             Assert.NotNull(result);
             Assert.NotEqual(Guid.Empty, result.IdMovimento);
             _movimentoRepositoryMock.Verify(r => r.Adicionar(It.IsAny<Movimento>()), Times.Once);
-            _idempotenciaRepositoryMock.Verify(r => r.AdicionarIdempotencia(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+            _idempotenciaServiceMock.Verify(s => s.AdicionarIdempotencia(chaveIdempotencia, It.IsAny<string>(), It.IsAny<string>()), Times.Once);
         }
 
         [Fact]
@@ -65,20 +67,15 @@ namespace Questao5.Tests.ServiceTests
             var request = new MovimentarContaRequest
             {
                 IdRequisicao = "abc123",
-                NumeroConta = "123",
+                NumeroConta = "1234567890",
                 Valor = 100,
                 Tipo = TipoMovimento.Credito
             };
 
             var existingResult = new MovimentarContaResponse { IdMovimento = Guid.NewGuid() };
-            var idempotencia = new Idempotencia
-            {
-                ChaveIdempotencia = GeneraterHash.GenerateSHA256Hash($"{request.IdRequisicao}|{request.NumeroConta}|{request.Valor}|{request.Tipo}"),
-                Requisicao = "{...}",
-                Resultado = Newtonsoft.Json.JsonConvert.SerializeObject(existingResult)
-            };
+            var chaveIdempotencia = GeneraterHash.GenerateSHA256Hash($"{request.IdRequisicao}|{request.NumeroConta}|{request.Valor}|{request.Tipo}");
 
-            _idempotenciaRepositoryMock.Setup(r => r.ChaveJaProcessada(It.IsAny<string>())).ReturnsAsync(idempotencia);
+            _idempotenciaServiceMock.Setup(s => s.ChaveJaProcessada(request)).ReturnsAsync((chaveIdempotencia, existingResult));
 
             // Act
             var result = await _movimentoService.Adicionar(request);
@@ -86,7 +83,7 @@ namespace Questao5.Tests.ServiceTests
             // Assert
             Assert.Equal(existingResult.IdMovimento, result.IdMovimento);
             _movimentoRepositoryMock.Verify(r => r.Adicionar(It.IsAny<Movimento>()), Times.Never);
-            _idempotenciaRepositoryMock.Verify(r => r.AdicionarIdempotencia(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+            _idempotenciaServiceMock.Verify(s => s.AdicionarIdempotencia(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
         }
     }
 }
