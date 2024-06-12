@@ -9,12 +9,11 @@ namespace Questao5.Tests.ValidatorTests
     public class ContaCorrenteValidatorTests
     {
         [Fact]
-        public void ValidRequest_WithValidData_ShouldNotThrowException()
+        public void RequisicaoValida_ComDadosValidos_NaoDeveLancarExcecao()
         {
-            // Arrange
+     
             var request = new ConsultarSaldoRequest { NumeroConta = "1234567890" };
 
-            // Act & Assert
             var exception = Record.Exception(() => ContaCorrenteValidator.validRequest(request));
             Assert.Null(exception);
         }
@@ -25,43 +24,41 @@ namespace Questao5.Tests.ValidatorTests
         [InlineData("   ")]
         [InlineData("123456789012")]
         [InlineData("abcdefghij")]
-        public void ValidRequest_WithInvalidData_ShouldThrowContaCorrenteInvalidAccountException(string numeroConta)
+        public void RequisicaoValida_ComDadosInvalidos_DeveLancarContaCorrenteContaInvalidaExcecao(string numeroConta)
         {
-            // Arrange
+
             var request = new ConsultarSaldoRequest { NumeroConta = numeroConta };
 
-            // Act & Assert
+        
             Assert.Throws<ContaCorrenteInvalidAccountException>(() => ContaCorrenteValidator.validRequest(request));
         }
 
         [Fact]
-        public void ValidContaCorrente_WithValidData_ShouldNotThrowException()
+        public void ContaCorrenteValida_ComDadosValidos_NaoDeveLancarExcecao()
         {
-            // Arrange
+
             var contaCorrente = new ContaCorrente { Ativo = true };
 
-            // Act & Assert
             var exception = Record.Exception(() => ContaCorrenteValidator.validContaCorrente(contaCorrente));
             Assert.Null(exception);
         }
 
         [Fact]
-        public void ValidContaCorrente_WithNullContaCorrente_ShouldThrowContaCorrenteInvalidAccountException()
+        public void ContaCorrenteValida_ComContaCorrenteNula_DeveLancarContaCorrenteContaInvalidaExcecao()
         {
-            // Arrange
+    
             ContaCorrente contaCorrente = null;
 
-            // Act & Assert
+
             Assert.Throws<ContaCorrenteInvalidAccountException>(() => ContaCorrenteValidator.validContaCorrente(contaCorrente));
         }
 
         [Fact]
-        public void ValidContaCorrente_WithInativeContaCorrente_ShouldThrowContaCorrenteInactiveAccountException()
+        public void ContaCorrenteValida_ComContaCorrenteInativa_DeveLancarContaCorrenteContaInativaExcecao()
         {
-            // Arrange
+    
             var contaCorrente = new ContaCorrente { Ativo = false };
 
-            // Act & Assert
             Assert.Throws<ContaCorrenteInactiveAccountException>(() => ContaCorrenteValidator.validContaCorrente(contaCorrente));
         }
     }

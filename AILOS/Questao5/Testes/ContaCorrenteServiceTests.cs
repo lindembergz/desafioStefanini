@@ -18,9 +18,9 @@ namespace Questao5.Tests.ServiceTests
         }
 
         [Fact]
-        public async Task ObterPorNumeroConta_WithExistingConta_ShouldReturnContaCorrente()
+        public async Task ObterPorNumeroConta_ComContaExistente_DeveDevolverContaCorrente()
         {
-            // Arrange
+        
             var numeroConta = "1234567890";
             var contaCorrente = new ContaCorrente
             {
@@ -32,10 +32,10 @@ namespace Questao5.Tests.ServiceTests
 
             _contaCorrenteRepositoryMock.Setup(r => r.ObterPorNumeroConta(numeroConta)).ReturnsAsync(contaCorrente);
 
-            // Act
+           
             var result = await _contaCorrenteService.ObterPorNumeroConta(numeroConta);
 
-            // Assert
+         
             Assert.NotNull(result);
             Assert.Equal(contaCorrente.IdContaCorrente, result.IdContaCorrente);
             Assert.Equal(contaCorrente.Numero, result.Numero);
@@ -44,16 +44,16 @@ namespace Questao5.Tests.ServiceTests
         }
 
         [Fact]
-        public async Task ObterPorNumeroConta_WithNonExistingConta_ShouldReturnNull()
+        public async Task ObterPorNumeroConta_ComContaNaoExistente_DeveRetornarNulo()
         {
-            // Arrange
+           
             var numeroConta = "123";
             _contaCorrenteRepositoryMock.Setup(r => r.ObterPorNumeroConta(numeroConta)).ReturnsAsync((ContaCorrente)null);
 
-            // Act
+           
             var result = await _contaCorrenteService.ObterPorNumeroConta(numeroConta);
 
-            // Assert
+            
             Assert.Null(result);
         }
     }

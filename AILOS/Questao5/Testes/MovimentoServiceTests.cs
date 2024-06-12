@@ -26,9 +26,9 @@ namespace Questao5.Tests.ServiceTests
         }
 
         [Fact]
-        public async Task Adicionar_WithValidRequest_ShouldAddMovimento()
+        public async Task Adicionar_ComRequisicaoValida_DeveAdicionarMovimento()
         {
-            // Arrange
+           
             var request = new MovimentarContaRequest
             {
                 IdRequisicao = "abc123",
@@ -50,10 +50,10 @@ namespace Questao5.Tests.ServiceTests
             _contaCorrenteRepositoryMock.Setup(r => r.ObterPorNumeroConta(request.NumeroConta)).ReturnsAsync(contaCorrente);
             _idempotenciaServiceMock.Setup(s => s.ChaveJaProcessada(request)).ReturnsAsync((chaveIdempotencia, null));
 
-            // Act
+            
             var result = await _movimentoService.Adicionar(request);
 
-            // Assert
+         
             Assert.NotNull(result);
             Assert.NotEqual(Guid.Empty, result.IdMovimento);
             _movimentoRepositoryMock.Verify(r => r.Adicionar(It.IsAny<Movimento>()), Times.Once);
@@ -61,9 +61,9 @@ namespace Questao5.Tests.ServiceTests
         }
 
         [Fact]
-        public async Task Adicionar_WithIdempotenciaProcessada_ShouldReturnExistingResult()
+        public async Task Adicionar_ComIdempotenciaProcessada_DeveRetornarResultadoExistente()
         {
-            // Arrange
+          
             var request = new MovimentarContaRequest
             {
                 IdRequisicao = "abc123",
@@ -77,10 +77,10 @@ namespace Questao5.Tests.ServiceTests
 
             _idempotenciaServiceMock.Setup(s => s.ChaveJaProcessada(request)).ReturnsAsync((chaveIdempotencia, existingResult));
 
-            // Act
+            
             var result = await _movimentoService.Adicionar(request);
 
-            // Assert
+            
             Assert.Equal(existingResult.IdMovimento, result.IdMovimento);
             _movimentoRepositoryMock.Verify(r => r.Adicionar(It.IsAny<Movimento>()), Times.Never);
             _idempotenciaServiceMock.Verify(s => s.AdicionarIdempotencia(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);

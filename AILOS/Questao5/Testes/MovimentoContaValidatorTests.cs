@@ -8,9 +8,9 @@ namespace Questao5.Tests.ValidatorTests
     public class MovimentoContaValidatorTests
     {
         [Fact]
-        public void ValidRequest_WithValidData_ShouldNotThrowException()
+        public void RequisicaoValida_ComDadosValidos_NaoDeveLancarExcecao()
         {
-            // Arrange
+           
             var request = new MovimentarContaRequest
             {
                 IdRequisicao = "abc123",
@@ -19,7 +19,7 @@ namespace Questao5.Tests.ValidatorTests
                 Tipo = TipoMovimento.Credito
             };
 
-            // Act & Assert
+            
             var exception = Record.Exception(() => MovimentoContaValidator.validRequest(request));
             Assert.Null(exception);
         }
@@ -28,9 +28,9 @@ namespace Questao5.Tests.ValidatorTests
         [InlineData(null)]
         [InlineData("")]
         [InlineData("   ")]
-        public void ValidRequest_WithInvalidIdRequisicao_ShouldThrowMovimentoInvalidRequestException(string idRequisicao)
+        public void RequisicaoValida_ComIdRequisicaoInvalido_DeveLancarMovimentoRequisicaoInvalidaExcecao(string idRequisicao)
         {
-            // Arrange
+            
             var request = new MovimentarContaRequest
             {
                 IdRequisicao = idRequisicao,
@@ -39,7 +39,7 @@ namespace Questao5.Tests.ValidatorTests
                 Tipo = TipoMovimento.Credito
             };
 
-            // Act & Assert
+           
             Assert.Throws<MovimentoInvalidRequestException>(() => MovimentoContaValidator.validRequest(request));
         }
 
@@ -49,9 +49,9 @@ namespace Questao5.Tests.ValidatorTests
         [InlineData("   ")]
         [InlineData("123456789012")]
         [InlineData("abcdefghij")]
-        public void ValidRequest_WithInvalidNumeroConta_ShouldThrowMovimentoInvalidAccountException(string numeroConta)
+        public void RequisicaoValida_ComNumeroContaInvalido_DeveLancarMovimentoContaInvalidaExcecao(string numeroConta)
         {
-            // Arrange
+           
             var request = new MovimentarContaRequest
             {
                 IdRequisicao = "abc123",
@@ -60,16 +60,16 @@ namespace Questao5.Tests.ValidatorTests
                 Tipo = TipoMovimento.Credito
             };
 
-            // Act & Assert
+           
             Assert.Throws<MovimentoInvalidAccountException>(() => MovimentoContaValidator.validRequest(request));
         }
 
         [Theory]
         [InlineData(0)]
         [InlineData(-100)]
-        public void ValidRequest_WithInvalidValor_ShouldThrowMovimentoInvalidValueException(decimal valor)
+        public void RequisicaoValida_ComValorInvalido_DeveLancarMovimentoValorInvalidoExcecao(decimal valor)
         {
-            // Arrange
+            
             var request = new MovimentarContaRequest
             {
                 IdRequisicao = "abc123",
@@ -78,16 +78,16 @@ namespace Questao5.Tests.ValidatorTests
                 Tipo = TipoMovimento.Credito
             };
 
-            // Act & Assert
+           
             Assert.Throws<MovimentoInvalidValueException>(() => MovimentoContaValidator.validRequest(request));
         }
 
         [Theory]
         [InlineData('A')]
         [InlineData('B')]
-        public void ValidRequest_WithInvalidTipoMovimento_ShouldThrowMovimentoInvalidMovementTypeException(char tipo)
+        public void RequisicaoValida_ComTipoMovimentoInvalido_DeveLancarMovimentoTipoMovimentoInvalidoExcecao(char tipo)
         {
-            // Arrange
+           
             var request = new MovimentarContaRequest
             {
                 IdRequisicao = "abc123",
@@ -96,7 +96,7 @@ namespace Questao5.Tests.ValidatorTests
                 Tipo = (TipoMovimento)tipo
             };
 
-            // Act & Assert
+            
             Assert.Throws<MovimentoInvalidMovementTypeException>(() => MovimentoContaValidator.validRequest(request));
         }
     }
