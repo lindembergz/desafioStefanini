@@ -21,15 +21,9 @@ namespace Questao5.Infrastructure.Repositories
 
         public async Task AdicionarIdempotencia(string chaveIdempotencia, string requisicao, string resultado)
         {
-            var idempotencia = new Idempotencia
-            {
-                ChaveIdempotencia = chaveIdempotencia,
-                Requisicao = requisicao,
-                Resultado = resultado
-            };
+            var idempotencia = new Idempotencia (chaveIdempotencia,requisicao, resultado);
 
             await _context.Idempotencias.AddAsync(idempotencia);
-            //await _context.SaveChangesAsync();
-        }
+         }
     }
 }
