@@ -36,7 +36,7 @@ namespace Stefanini.Venda.Domain.Entities
             ValorTotal += valor;
         }
 
-         public void AddItemPedido(ItemPedidoEntity item, decimal valorUnitario)
+         public void AddItemPedido(ItemPedidoEntity item)
       
         {
             ItensPedido.Add(item);

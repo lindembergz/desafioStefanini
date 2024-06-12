@@ -1,0 +1,35 @@
+SELECT assunto, ano, COUNT(*) AS quantidade
+FROM atendimentos
+GROUP BY assunto, ano
+HAVING COUNT(*) > 3
+ORDER BY ano DESC, quantidade DESC;
+
+Explicação:
+
+quantidade: Seleciona as colunas assunto, ano e a contagem de ocorrências agrupada como quantidade:
+
+SELECT assunto, ano, COUNT(*) AS QUANTIDADE
+
+Especifica a tabela de origem dos dados:
+
+FROM atendimentos
+
+Agrupa os registros por assunto e ano:
+
+GROUP BY assunto, ano
+
+Filtra os grupos que possuem mais de 3 ocorrências no mesmo ano:
+
+HAVING COUNT(*) > 3
+
+Ordena os resultados primeiro por ano em ordem decrescente e, depois, por quantidade em ordem decrescente:
+
+ORDER BY ano DESC, quantidade DESC: 
+
+O resultado será:
+
+code       	ASSUNTO      	ANO          QUANTIDADE
+Reclamacao 	cadastro     	2022         8
+Reclamacao 	produto      	2021         6
+Reclamacao 	atendimento  	2021         4
+

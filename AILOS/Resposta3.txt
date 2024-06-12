@@ -1,0 +1,22 @@
+De acordo com a sequência de comandos Git fornecida, a opção correta é a 3 - style.css.
+
+Explicação:
+
+1. `git init`: inicializa um novo repositório Git no diretório atual.
+2. `nano README.md` e `nano default.html`: cria dois arquivos chamados README.md e default.html, respectivamente.
+3. `git add .`: adiciona todos os arquivos no diretório atual ao staged area (área de preparação).
+4. `git commit -m "Commit 1"`: cria um novo commit com a mensagem "Commit 1", incluindo os arquivos README.md e default.html.
+5. `git rm default.html`: remove o arquivo default.html do repositório.
+6. `nano style.css`: cria um novo arquivo chamado style.css.
+7. `git add style.css`: adiciona o arquivo style.css ao staged area.
+8. `git commit -m "Commit 2"`: cria um novo commit com a mensagem "Commit 2", incluindo o arquivo style.css.
+9. `git checkout -b testing`: cria e muda para um novo branch chamado "testing".
+10. `nano script.js`: cria um novo arquivo chamado script.js.
+11. `git add *.js`: adiciona todos os arquivos com extensão .js ao staged area, ou seja, o arquivo script.js.
+12. `git commit -m "Commit 3"`: cria um novo commit com a mensagem "Commit 3" no branch "testing", incluindo o arquivo script.js.
+13. `git checkout master`: muda de volta para o branch principal "master".
+
+Na branch "master" o único arquivo presente no diretório de trabalho é o style.css, 
+pois o arquivo default.html foi removido, e o arquivo script.js foi adicionado apenas no branch "testing".
+
+Portanto, a resposta correta é a opção 3 - style.css.
