@@ -5,6 +5,7 @@ using Questao5.Application.Validators;
 using Questao5.Core.Data;
 using Questao5.Core.Security;
 using Questao5.Domain.Entities;
+using Questao5.Domain.Enumerators;
 using Questao5.Domain.Interfaces.Repositories;
 
 
@@ -45,7 +46,7 @@ namespace Questao5.Application.Services
                  Guid.NewGuid(),
                  contaCorrente.IdContaCorrente,
                  DateTime.Now.ToString(),
-                 request.Tipo.ToString()[0].ToString(),
+                 TipoMovimentoExtensions.ToChar(request.Tipo),//request.Tipo.ToString()[0].ToString(),
                  request.Valor);
 
             var resultado = new MovimentarContaResponse { IdMovimento = movimento.IdMovimento };

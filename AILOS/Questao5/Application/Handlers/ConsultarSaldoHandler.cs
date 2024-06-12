@@ -31,8 +31,15 @@ namespace Questao5.Application.Handlers
            
             var movimentos = await _movimentoService.ObterPorContaCorrente(contaCorrente.IdContaCorrente);
 
-            decimal creditos = movimentos.Where(m => m.TipoMovimento == TipoMovimento.Credito.ToString()[0].ToString()).Sum(m => m.Valor);
-            decimal debitos = movimentos.Where(m => m.TipoMovimento == TipoMovimento.Debito.ToString()[0].ToString()).Sum(m => m.Valor);
+            //decimal creditos = movimentos.Where(m => m.TipoMovimento == TipoMovimento.Credito.ToString()[0].ToString()).Sum(m => m.Valor);
+            //decimal debitos = movimentos.Where(m => m.TipoMovimento == TipoMovimento.Debito.ToString()[0].ToString()).Sum(m => m.Valor);
+
+            
+
+
+
+            decimal creditos = movimentos.Where(m => m.TipoMovimento == TipoMovimentoExtensions.ToChar(TipoMovimento.Credito)).Sum(m => m.Valor);
+            decimal debitos = movimentos.Where(m => m.TipoMovimento == TipoMovimentoExtensions.ToChar(TipoMovimento.Debito)).Sum(m => m.Valor);
 
             decimal saldo = creditos - debitos;
 
