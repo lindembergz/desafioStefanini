@@ -8,5 +8,8 @@ namespace Questao5.Application.Services
     public interface IMovimentoService
     {
         Task<MovimentarContaResponse> Adicionar(MovimentarContaRequest movimento);
+
+        Task<IEnumerable<Movimento>> ObterPorContaCorrente(Guid idContaCorrente);
+        
     }
 }

@@ -16,9 +16,6 @@ namespace Questao5.Application.Services
         private readonly IContaCorrenteRepository _contaCorrenteRepository;
         private readonly IIdempotenciaRepository _idempotenciaRepository;
 
-        private readonly IUnitOfWork _unitOfWork;
-
-
         public MovimentoService(IMovimentoRepository movimentoRepository,
                         IContaCorrenteRepository contaCorrenteRepository,
                         IIdempotenciaRepository idempotenciaRepository
@@ -73,5 +70,11 @@ namespace Questao5.Application.Services
             return resultado;
         }
 
-     }
+
+        public async Task<IEnumerable<Movimento>> ObterPorContaCorrente(Guid idContaCorrente)
+        {
+            return await _movimentoRepository.ObterPorContaCorrente(idContaCorrente);
+
+        }
+    }
 }

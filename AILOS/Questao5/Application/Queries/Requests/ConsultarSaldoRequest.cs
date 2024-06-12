@@ -5,7 +5,7 @@ namespace Questao5.Application.Queries.Requests
 {
     public class ConsultarSaldoRequest : IRequest<ConsultarSaldoResponse>
     {
-        public string NumeroConta { get; set; }
+        public string NumeroConta{ get; set; }
 
     }
 }

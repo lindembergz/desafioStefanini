@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Lindemberg\\Desafio\\API\\Questao1\\Questao2\\Questao2.csproj",
+      "projectUniqueName": "C:\\Lindemberg\\desafioStefanini\\AILOS\\Questao2\\Questao2.csproj",
       "projectName": "Questao2",
-      "projectPath": "C:\\Lindemberg\\Desafio\\API\\Questao1\\Questao2\\Questao2.csproj",
+      "projectPath": "C:\\Lindemberg\\desafioStefanini\\AILOS\\Questao2\\Questao2.csproj",
       "packagesPath": "C:\\Users\\lcaraujo1\\.nuget\\packages\\",
-      "outputPath": "C:\\Lindemberg\\Desafio\\API\\Questao1\\Questao2\\obj\\",
+      "outputPath": "C:\\Lindemberg\\desafioStefanini\\AILOS\\Questao2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\lcaraujo1\\AppData\\Roaming\\NuGet\\NuGet.Config",

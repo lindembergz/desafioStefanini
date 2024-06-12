@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Lindemberg\\Desafio\\API\\Questao1\\Questao1\\Questao1.csproj": {}
+    "C:\\Lindemberg\\desafioStefanini\\AILOS\\Questao1\\Questao1.csproj": {}
   },
   "projects": {
-    "C:\\Lindemberg\\Desafio\\API\\Questao1\\Questao1\\Questao1.csproj": {
+    "C:\\Lindemberg\\desafioStefanini\\AILOS\\Questao1\\Questao1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Lindemberg\\Desafio\\API\\Questao1\\Questao1\\Questao1.csproj",
+        "projectUniqueName": "C:\\Lindemberg\\desafioStefanini\\AILOS\\Questao1\\Questao1.csproj",
         "projectName": "Questao1",
-        "projectPath": "C:\\Lindemberg\\Desafio\\API\\Questao1\\Questao1\\Questao1.csproj",
+        "projectPath": "C:\\Lindemberg\\desafioStefanini\\AILOS\\Questao1\\Questao1.csproj",
         "packagesPath": "C:\\Users\\lcaraujo1\\.nuget\\packages\\",
-        "outputPath": "C:\\Lindemberg\\Desafio\\API\\Questao1\\Questao1\\obj\\",
+        "outputPath": "C:\\Lindemberg\\desafioStefanini\\AILOS\\Questao1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\lcaraujo1\\AppData\\Roaming\\NuGet\\NuGet.Config",

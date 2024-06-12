@@ -3,7 +3,8 @@ using Questao5.Application.Queries.Requests;
 using Questao5.Application.Queries.Responses;
 using Questao5.Domain.Enumerators;
 using Questao5.Application.Validators;
-using Questao5.Domain.Interfaces.Repositories;
+using Questao5.Domain.Interfaces.Services;
+using Questao5.Application.Services;
 
 namespace Questao5.Application.Handlers
 {
@@ -11,25 +12,24 @@ namespace Questao5.Application.Handlers
     {
 
 
-        private readonly IContaCorrenteRepository _contaCorrenteRepository;
-        private readonly IMovimentoRepository _movimentoRepository;
+        private readonly IContaCorrenteService _contaCorrenteService;
+        private readonly IMovimentoService _movimentoService;
 
-        public ConsultarSaldoHandler(IContaCorrenteRepository contaCorrenteRepository, IMovimentoRepository movimentoRepository)
+        public ConsultarSaldoHandler(IContaCorrenteService contaCorrenteService, IMovimentoService movimentoService)
         {
-            _contaCorrenteRepository = contaCorrenteRepository;
-            _movimentoRepository = movimentoRepository;
+            _contaCorrenteService = contaCorrenteService;
+            _movimentoService = movimentoService;
         }
 
         public async Task<ConsultarSaldoResponse> Handle(ConsultarSaldoRequest request, CancellationToken cancellationToken)
         {
             ContaCorrenteValidator.validRequest(request);
 
-            var contaCorrente = await _contaCorrenteRepository.ObterPorNumeroConta(request.NumeroConta);
+            var contaCorrente = await _contaCorrenteService.ObterPorNumeroConta(request.NumeroConta);
 
-            ContaCorrenteValidator.validContaCorrente(contaCorrente);
-   
+            ContaCorrenteValidator.validContaCorrente(contaCorrente);   
            
-            var movimentos = await _movimentoRepository.ObterPorContaCorrente(contaCorrente.IdContaCorrente);
+            var movimentos = await _movimentoService.ObterPorContaCorrente(contaCorrente.IdContaCorrente);
 
             decimal creditos = movimentos.Where(m => m.TipoMovimento == TipoMovimento.Credito.ToString()[0].ToString()).Sum(m => m.Valor);
             decimal debitos = movimentos.Where(m => m.TipoMovimento == TipoMovimento.Debito.ToString()[0].ToString()).Sum(m => m.Valor);

@@ -3,8 +3,26 @@ using Microsoft.AspNetCore.Mvc;
 using Questao5.Application.Commands.Requests;
 using Questao5.Application.Queries.Requests;
 
-namespace Questao5.Presentation.Controller
+namespace Questao5.Presentation.Controllers
 {
+
+
+    /* MINIMAL API
+
+        endpoints.MapPost("/api/contacorrente/movimentar", async (IMediator mediator, MovimentarContaRequest command) =>
+        {
+            var movimentoId = await mediator.Send(command);
+            return Results.Ok(movimentoId);
+        });
+
+        endpoints.MapGet("/api/contacorrente/saldo", async (IMediator mediator, [FromQuery] ConsultarSaldoRequest query) =>
+        {
+            var response = await mediator.Send(query);
+            return Results.Ok(response);
+        });
+     */
+
+
     [Route("api/[controller]")]
     public class ContaCorrenteController : ControllerBase
     {
@@ -30,21 +48,5 @@ namespace Questao5.Presentation.Controller
             return Ok(response);
         }
 
-        /* MINIMAL API
-         
-            endpoints.MapPost("/api/contacorrente/movimentar", async (IMediator mediator, MovimentarContaRequest command) =>
-            {
-                var movimentoId = await mediator.Send(command);
-                return Results.Ok(movimentoId);
-            });
-
-            endpoints.MapGet("/api/contacorrente/saldo", async (IMediator mediator, [FromQuery] ConsultarSaldoRequest query) =>
-            {
-                var response = await mediator.Send(query);
-                return Results.Ok(response);
-            });
-
-
-         */
     }
 }

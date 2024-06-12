@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Questao5.Domain.Entities
 {
-    [Table("contacorrente")]
+    //[Table("contacorrente")]
     public class ContaCorrente
     {
         //[Key]
