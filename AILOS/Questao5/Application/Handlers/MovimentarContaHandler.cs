@@ -11,15 +11,12 @@ namespace Questao5.Application.Handlers
 {
     public class MovimentarContaHandler : IRequestHandler<MovimentarContaRequest, MovimentarContaResponse>
     {
-        private readonly IContaCorrenteService _contaCorrenteService;
         private readonly IMovimentoService _movimentoService;
 
         public MovimentarContaHandler(
-              IContaCorrenteService contaCorrenteService,
               IMovimentoService movimentoService
               )
         {
-             _contaCorrenteService = contaCorrenteService;
             _movimentoService = movimentoService;
         }
 
