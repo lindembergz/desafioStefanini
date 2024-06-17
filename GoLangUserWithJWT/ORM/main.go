@@ -11,8 +11,10 @@ import (
 
     "github.com/dgrijalva/jwt-go"
     "github.com/gorilla/mux"
+    "github.com/google/uuid"
     "golang.org/x/crypto/bcrypt"
 )
+
 
 var jwtKey = []byte("minha_chave_secreta")
 
@@ -21,6 +23,7 @@ func main() {
 
     router.HandleFunc("/register", register).Methods("POST")
     router.HandleFunc("/login", login).Methods("POST")
+    router.HandleFunc("/refresh", refreshToken).Methods("POST") // rota para refresh token
 
     protected := router.PathPrefix("/").Subrouter()
     protected.Use(jwtMiddleware)
@@ -35,10 +38,15 @@ func main() {
 
 func register(w http.ResponseWriter, r *http.Request) {
     var newUser User
-    json.NewDecoder(r.Body).Decode(&newUser)
+    if err := json.NewDecoder(r.Body).Decode(&newUser); err != nil {
+        log.Printf("Erro ao decodificar o novo usuário: %v", err)
+        http.Error(w, "Dados de entrada inválidos", http.StatusBadRequest)
+        return
+    }
 
     hashedPassword, err := bcrypt.GenerateFromPassword([]byte(newUser.Password), bcrypt.DefaultCost)
     if err != nil {
+        log.Printf("Erro ao criptografar a senha: %v", err)
         http.Error(w, "Erro ao criptografar a senha", http.StatusInternalServerError)
         return
     }
@@ -46,10 +54,30 @@ func register(w http.ResponseWriter, r *http.Request) {
 
     result := db.Create(&newUser)
     if result.Error != nil {
+        log.Printf("Erro ao registrar usuário: %v", result.Error)
         http.Error(w, "Erro ao registrar usuário", http.StatusInternalServerError)
         return
     }
+    log.Printf("Usuário registrado com sucesso: %s", newUser.Username)
     json.NewEncoder(w).Encode(newUser)
+}
+
+func generateJWT(username string) (string, error) {
+    expirationTime := time.Now().Add(24 * time.Hour)
+    claims := &Claims{
+        Username: username,
+        StandardClaims: jwt.StandardClaims{
+            ExpiresAt: expirationTime.Unix(),
+        },
+    }
+
+    token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+    tokenString, err := token.SignedString(jwtKey)
+    if err != nil {
+        return "", err
+    }
+
+    return tokenString, nil
 }
 
 func login(w http.ResponseWriter, r *http.Request) {
@@ -57,32 +85,49 @@ func login(w http.ResponseWriter, r *http.Request) {
         Username string `json:"username"`
         Password string `json:"password"`
     }
-    json.NewDecoder(r.Body).Decode(&credentials)
+    if err := json.NewDecoder(r.Body).Decode(&credentials); err != nil {
+        log.Printf("Erro ao decodificar as credenciais: %v", err)
+        http.Error(w, "Dados de entrada inválidos", http.StatusBadRequest)
+        return
+    }
 
     var user User
     result := db.Where("username = ?", credentials.Username).First(&user)
     if result.Error != nil {
+        log.Printf("Usuário não encontrado: %v", result.Error)
         http.Error(w, "Nome de usuário ou senha inválidos", http.StatusUnauthorized)
         return
     }
 
     err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(credentials.Password))
     if err != nil {
+        log.Printf("Senha inválida: %v", err)
         http.Error(w, "Nome de usuário ou senha inválidos", http.StatusUnauthorized)
         return
     }
 
-    token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
-        "username": user.Username,
-        "exp":      time.Now().Add(time.Hour * 24).Unix(),
-    })
-    tokenString, err := token.SignedString(jwtKey)
+    accessToken, err := generateJWT(user.Username)
     if err != nil {
+        log.Printf("Erro ao gerar o token JWT: %v", err)
         http.Error(w, "Erro ao gerar o token JWT", http.StatusInternalServerError)
         return
     }
-    json.NewEncoder(w).Encode(map[string]string{"token": tokenString})
+
+    refreshToken, err := generateRefreshToken(user.ID)
+    if err != nil {
+        log.Printf("Erro ao gerar o refresh token: %v", err)
+        http.Error(w, "Erro ao gerar o refresh token", http.StatusInternalServerError)
+        return
+    }
+
+    log.Printf("Login bem-sucedido para usuário: %s", user.Username)
+    json.NewEncoder(w).Encode(map[string]string{
+        "access_token":  accessToken,
+        "refresh_token": refreshToken,
+    })
 }
+
+
 
 func getUsers(w http.ResponseWriter, r *http.Request) {
     var users []User
@@ -172,4 +217,68 @@ func jwtMiddleware(next http.Handler) http.Handler {
     })
 }
 
+
+func generateRefreshToken(userID uint) (string, error) {
+    refreshToken := uuid.NewString()
+    expiresAt := time.Now().Add(7 * 24 * time.Hour) // 1 week
+
+    refresh := RefreshToken{
+        Token:     refreshToken,
+        UserID:    userID,
+        ExpiresAt: expiresAt,
+    }
+    if err := db.Create(&refresh).Error; err != nil {
+        return "", err
+    }
+    return refreshToken, nil
+}
+
+func validateRefreshToken(token string) (*User, error) {
+    var refreshToken RefreshToken
+    if err := db.Where("token = ?", token).First(&refreshToken).Error; err != nil {
+        return nil, err
+    }
+
+    if refreshToken.ExpiresAt.Before(time.Now()) {
+        return nil, fmt.Errorf("refresh token expired")
+    }
+
+    var user User
+    if err := db.First(&user, refreshToken.UserID).Error; err != nil {
+        return nil, err
+    }
+    return &user, nil
+}
+
+
+
+func refreshToken(w http.ResponseWriter, r *http.Request) {
+    var request struct {
+        Token string `json:"token"`
+    }
+    json.NewDecoder(r.Body).Decode(&request)
+
+    user, err := validateRefreshToken(request.Token)
+    if err != nil {
+        http.Error(w, "Invalid refresh token", http.StatusUnauthorized)
+        return
+    }
+
+    accessToken, err := generateJWT(user.Username)
+    if err != nil {
+        http.Error(w, "Could not generate access token", http.StatusInternalServerError)
+        return
+    }
+
+    newRefreshToken, err := generateRefreshToken(user.ID)
+    if err != nil {
+        http.Error(w, "Could not generate refresh token", http.StatusInternalServerError)
+        return
+    }
+
+    json.NewEncoder(w).Encode(map[string]string{
+        "access_token":  accessToken,
+        "refresh_token": newRefreshToken,
+    })
+}
 

@@ -26,5 +26,5 @@ func init() {
     }
     
     // Migrar a estrutura da tabela
-    db.AutoMigrate(&User{})
+    db.AutoMigrate(&User{}, &RefreshToken{})
 }
