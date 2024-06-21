@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package order;
+
+option go_package = "pocgrpc/order";
+
+import "user/user.proto";
+
+message OrderRequest {
+    int32 id = 1;
+}
+
+message OrderResponse {
+    int32 id = 1;
+    string product = 2;
+    user.UserResponse user = 3;
+}
+
+service OrderService {
+    rpc GetOrder(OrderRequest) returns (OrderResponse);
+}

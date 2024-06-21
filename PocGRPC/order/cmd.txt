@@ -1,0 +1,1 @@
+protoc -I . --go_out=Muser/user.proto=pocgrpc/user:. --go_opt=paths=source_relative --go-grpc_out=Muser/user.proto=pocgrpc/user:. --go-grpc_opt=paths=source_relative order/order.proto
