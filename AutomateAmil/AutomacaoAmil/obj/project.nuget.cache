@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "zVdth/BP+uU=",
+  "success": true,
+  "projectFilePath": "C:\\Lindemberg\\AutomateAmil\\AutomacaoAmil\\AutomacaoAmil.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\lcaraujo1\\.nuget\\packages\\selenium.support\\4.27.0\\selenium.support.4.27.0.nupkg.sha512",
+    "C:\\Users\\lcaraujo1\\.nuget\\packages\\selenium.webdriver\\4.27.0\\selenium.webdriver.4.27.0.nupkg.sha512",
+    "C:\\Users\\lcaraujo1\\.nuget\\packages\\selenium.webdriver.chromedriver\\131.0.6778.20400\\selenium.webdriver.chromedriver.131.0.6778.20400.nupkg.sha512",
+    "C:\\Users\\lcaraujo1\\.nuget\\packages\\system.text.encodings.web\\8.0.0\\system.text.encodings.web.8.0.0.nupkg.sha512",
+    "C:\\Users\\lcaraujo1\\.nuget\\packages\\system.text.json\\8.0.5\\system.text.json.8.0.5.nupkg.sha512"
+  ],
+  "logs": []
+}
